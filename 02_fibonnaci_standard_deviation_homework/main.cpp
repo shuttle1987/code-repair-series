@@ -55,9 +55,7 @@ int main(int argc, char* argv[])
 
 void fillGenericArray(int SIZE_OF_GENERIC_ARRAY)
 {
-   int i = 0;
-
-   Array[0] = { 1 };
+   Array[0] = 1;
 
    for (int i = 0; i < SIZE_OF_GENERIC_ARRAY; i++)
        Array[i] = i + 1;
@@ -67,10 +65,8 @@ void fillGenericArray(int SIZE_OF_GENERIC_ARRAY)
 
 void fillFibonacciArray(int SIZE_OF_FIBONACCI_ARRAY)
 {
-   int i;
-
-   Array[0] = { 0 };
-   Array[1] = { 1 };
+   Array[0] = 0;
+   Array[1] = 1;
 
    for (int i = 2; i < SIZE_OF_FIBONACCI_ARRAY; i++)
        Array[i] = Array[i - 1] + Array[i - 2];
