@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-using namespace std;
 
 const int SIZE_OF_GENERIC_ARRAY = 100;
 const int SIZE_OF_FIBONACCI_ARRAY = 20;
@@ -25,12 +24,12 @@ void outputStandardDeviation();
 
 int main(int argc, char* argv[])
 {
-   cout << "Would you like to generate a generic sequence or a Fibonacci sequence?"
-       << endl
+   std::cout << "Would you like to generate a generic sequence or a Fibonacci sequence?"
+       << std::endl
        << "\n"
-       << "Type [G] + [ENTER] for a generic sequence, or;" << endl
+       << "Type [G] + [ENTER] for a generic sequence, or;" << std::endl
        << "Type [F] + [ENTER] for a Fibonacci sequence: ";
-   cin >> sequenceType;
+   std::cin >> sequenceType;
 
    if (sequenceType == 'G' || sequenceType == 'g')
    {
@@ -47,7 +46,7 @@ int main(int argc, char* argv[])
    }
 
    else
-       cout << "\n"
+       std::cout << "\n"
             << "Invalid input. Please type 'F' or 'G'. Thank you.";
 
    return 0;
@@ -128,15 +127,15 @@ double standardDeviation(int Array[], int SIZE_OF_FIBONACCI_ARRAY)
 
 void outputMean()
 {
-   cout << "\n";
-   cout << "The mean is: " << mean(Array, SIZE_OF_GENERIC_ARRAY);
-   cout << endl;
+   std::cout << "\n";
+   std::cout << "The mean is: " << mean(Array, SIZE_OF_GENERIC_ARRAY);
+   std::cout << std::endl;
 }
 
 void outputStandardDeviation()
 {
-   cout << "\n";
-   cout << "The standard deviation is: " << standardDeviation(Array,
+   std::cout << "\n";
+   std::cout << "The standard deviation is: " << standardDeviation(Array,
     SIZE_OF_GENERIC_ARRAY);
-   cout << endl;
+   std::cout << std::endl;
 }
