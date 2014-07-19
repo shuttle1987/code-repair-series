@@ -5,7 +5,6 @@ const int SIZE_OF_GENERIC_ARRAY = 100;
 const int SIZE_OF_FIBONACCI_ARRAY = 20;
 
 double arithmeticAverage;
-char sequenceType;
 
 float Array[SIZE_OF_GENERIC_ARRAY];
 int Fibonacci[SIZE_OF_FIBONACCI_ARRAY];
@@ -24,6 +23,7 @@ void outputStandardDeviation();
 
 int main(int argc, char* argv[])
 {
+   char sequenceType;
    std::cout << "Would you like to generate a generic sequence or a Fibonacci sequence?"
        << std::endl
        << "\n"
