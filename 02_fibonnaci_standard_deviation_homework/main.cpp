@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -24,7 +23,7 @@ double standardDeviation(int[], int);
 void outputMean();
 void outputStandardDeviation();
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
    cout << "Would you like to generate a generic sequence or a Fibonacci sequence?"
        << endl
