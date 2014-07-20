@@ -4,8 +4,6 @@
 const int SIZE_OF_GENERIC_ARRAY = 100;
 const int SIZE_OF_FIBONACCI_ARRAY = 20;
 
-double arithmeticAverage;
-
 float Array[SIZE_OF_GENERIC_ARRAY];
 int Fibonacci[SIZE_OF_FIBONACCI_ARRAY];
 
@@ -82,8 +80,7 @@ double mean(float Array[], int SIZE_OF_GENERIC_ARRAY)
    {
        sumOfElements += Array[i];
    }
-   arithmeticAverage = sumOfElements / i;
-   return (arithmeticAverage);
+   return sumOfElements / i;
 }
 
 double mean(int Array[], int SIZE_OF_FIBONACCI_ARRAY)
@@ -95,8 +92,7 @@ double mean(int Array[], int SIZE_OF_FIBONACCI_ARRAY)
    {
        sumOfElements += Array[i];
    }
-   arithmeticAverage = sumOfElements / i;
-   return (arithmeticAverage);
+   return sumOfElements / i;
 }
 
 double standardDeviation(float Array[], int SIZE_OF_GENERIC_ARRAY)
