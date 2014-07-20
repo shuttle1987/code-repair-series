@@ -4,10 +4,8 @@
 const int SIZE_OF_GENERIC_ARRAY = 100;
 const int SIZE_OF_FIBONACCI_ARRAY = 20;
 
-float Array[SIZE_OF_GENERIC_ARRAY];
-
-void fillGenericArray(int SIZE_OF_GENERIC_ARRAY);
-void fillFibonacciArray(int SIZE_OF_FIBONACCI_ARRAY);
+void fillGenericArray(float[], size_t);
+void fillFibonacciArray(float[], size_t);
 
 double mean(float[], int);
 double mean(int[], int);
@@ -15,12 +13,14 @@ double mean(int[], int);
 double standardDeviation(float[], int);
 double standardDeviation(int[], int);
 
-void outputMean();
-void outputStandardDeviation();
+void outputMean(float[], size_t);
+void outputStandardDeviation(float[], size_t);
 
 int main(int argc, char* argv[])
 {
    char sequenceType;
+   float Array[SIZE_OF_GENERIC_ARRAY];
+
    std::cout << "Would you like to generate a generic sequence or a Fibonacci sequence?"
        << std::endl
        << "\n"
@@ -30,16 +30,16 @@ int main(int argc, char* argv[])
 
    if (sequenceType == 'G' || sequenceType == 'g')
    {
-       fillGenericArray(SIZE_OF_GENERIC_ARRAY);
-       outputMean();
-       outputStandardDeviation();
+       fillGenericArray(Array, SIZE_OF_GENERIC_ARRAY);
+       outputMean(Array, SIZE_OF_GENERIC_ARRAY);
+       outputStandardDeviation(Array, SIZE_OF_GENERIC_ARRAY);
    }
 
    else if (sequenceType == 'F' || sequenceType == 'f')
    {
-       fillFibonacciArray(SIZE_OF_FIBONACCI_ARRAY);
-       outputMean();
-       outputStandardDeviation();
+       fillFibonacciArray(Array, SIZE_OF_FIBONACCI_ARRAY);
+       outputMean(Array, SIZE_OF_FIBONACCI_ARRAY);
+       outputStandardDeviation(Array, SIZE_OF_FIBONACCI_ARRAY);
    }
 
    else
@@ -49,25 +49,21 @@ int main(int argc, char* argv[])
    return 0;
 }
 
-void fillGenericArray(int SIZE_OF_GENERIC_ARRAY)
+void fillGenericArray(float array_to_fill[], size_t array_size)
 {
-   Array[0] = 1;
-
-   for (int i = 0; i < SIZE_OF_GENERIC_ARRAY; i++)
-       Array[i] = i + 1;
-
-   return;
+   for (size_t i = 0; i < array_size; i++){
+       array_to_fill[i] = i + 1;
+   }
 }
 
-void fillFibonacciArray(int SIZE_OF_FIBONACCI_ARRAY)
+void fillFibonacciArray(float array_to_fill[], size_t array_size)
 {
-   Array[0] = 0;
-   Array[1] = 1;
+   array_to_fill[0] = 0;
+   array_to_fill[1] = 1;
 
-   for (int i = 2; i < SIZE_OF_FIBONACCI_ARRAY; i++)
-       Array[i] = Array[i - 1] + Array[i - 2];
-
-   return;
+   for (size_t i = 2; i < array_size; i++){
+       array_to_fill[i] = array_to_fill[i - 1] + array_to_fill[i - 2];
+   }
 }
 
 double mean(float Array[], int SIZE_OF_GENERIC_ARRAY)
@@ -120,17 +116,16 @@ double standardDeviation(int Array[], int SIZE_OF_FIBONACCI_ARRAY)
    return (standardDeviation);
 }
 
-void outputMean()
+void outputMean(float array_to_display[], size_t array_size)
 {
    std::cout << "\n";
-   std::cout << "The mean is: " << mean(Array, SIZE_OF_GENERIC_ARRAY);
+   std::cout << "The mean is: " << mean(array_to_display, array_size);
    std::cout << std::endl;
 }
 
-void outputStandardDeviation()
+void outputStandardDeviation(float array_to_display[], size_t array_size)
 {
    std::cout << "\n";
-   std::cout << "The standard deviation is: " << standardDeviation(Array,
-    SIZE_OF_GENERIC_ARRAY);
+   std::cout << "The standard deviation is: " << standardDeviation(array_to_display, array_size);
    std::cout << std::endl;
 }
