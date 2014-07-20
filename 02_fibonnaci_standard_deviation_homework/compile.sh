@@ -1,2 +1,2 @@
 #!/bin/sh
-g++ -Wall main.cpp -o Output
+g++ -Wall -std=c++11 main.cpp -o Output
