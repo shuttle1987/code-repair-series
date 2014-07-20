@@ -5,7 +5,6 @@ const int SIZE_OF_GENERIC_ARRAY = 100;
 const int SIZE_OF_FIBONACCI_ARRAY = 20;
 
 float Array[SIZE_OF_GENERIC_ARRAY];
-int Fibonacci[SIZE_OF_FIBONACCI_ARRAY];
 
 void fillGenericArray(int SIZE_OF_GENERIC_ARRAY);
 void fillFibonacciArray(int SIZE_OF_FIBONACCI_ARRAY);
