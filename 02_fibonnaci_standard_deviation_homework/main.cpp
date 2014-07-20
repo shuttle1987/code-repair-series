@@ -12,16 +12,16 @@ void fillSequentialIntegersArray(seq_array_t&);
 void fillFibonacciArray(fib_array_t&);
 
 template< typename containerT >
-double mean(containerT items);
+double mean(containerT const& items);
 
 template< typename containerT >
-double standardDeviation(containerT items);
+double standardDeviation(containerT const& items);
 
 template< typename containerT >
-void outputMean(containerT items);
+void outputMean(containerT const& items);
 
 template< typename containerT >
-void outputStandardDeviation(containerT items);
+void outputStandardDeviation(containerT const& items);
 
 int main(int argc, char* argv[])
 {
@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
 
 void fillSequentialIntegersArray(seq_array_t& array_to_fill)
 {
-   size_t array_size = array_to_fill.size();
+   const size_t array_size = array_to_fill.size();
    for (size_t i = 0; i < array_size; i++){
        array_to_fill[i] = i + 1;
    }
@@ -68,17 +68,17 @@ void fillFibonacciArray(fib_array_t& array_to_fill)
    array_to_fill[0] = 0;
    array_to_fill[1] = 1;
 
-   size_t array_size = array_to_fill.size();
+   const size_t array_size = array_to_fill.size();
    for (size_t i = 2; i < array_size; i++){
        array_to_fill[i] = array_to_fill[i - 1] + array_to_fill[i - 2];
    }
 }
 
 template< typename containerT >
-double mean(containerT items)
+double mean(containerT const& items)
 {
    double sumOfElements = 0;
-   size_t container_size = items.size();
+   const size_t container_size = items.size();
    for (size_t i = 0; i < container_size; i++)
    {
        sumOfElements += items[i];
@@ -87,11 +87,11 @@ double mean(containerT items)
 }
 
 template< typename containerT >
-double standardDeviation(containerT items)
+double standardDeviation(containerT const& items)
 {
    double tempSum = 0;
-   size_t container_size = items.size();
-   double calculated_mean = mean(items);
+   const size_t container_size = items.size();
+   const double calculated_mean = mean(items);
    for (size_t i = 0; i < container_size; i++)
    {
        tempSum += pow((items[i] - calculated_mean), 2);
@@ -100,7 +100,7 @@ double standardDeviation(containerT items)
 }
 
 template< typename containerT >
-void outputMean(containerT items)
+void outputMean(containerT const& items)
 {
    std::cout << "\n";
    std::cout << "The mean is: " << mean(items);
@@ -108,7 +108,7 @@ void outputMean(containerT items)
 }
 
 template< typename containerT >
-void outputStandardDeviation(containerT items)
+void outputStandardDeviation(containerT const& items)
 {
    std::cout << "\n";
    std::cout << "The standard deviation is: " << standardDeviation(items);
