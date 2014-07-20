@@ -11,17 +11,17 @@ typedef std::array<int, SIZE_OF_FIBONACCI_ARRAY> fib_array_t;
 void fillSequentialIntegersArray(seq_array_t&);
 void fillFibonacciArray(fib_array_t&);
 
-double mean(seq_array_t);
-double mean(fib_array_t);
+template< typename containerT >
+double mean(containerT items);
 
-double standardDeviation(seq_array_t);
-double standardDeviation(fib_array_t);
+template< typename containerT >
+double standardDeviation(containerT items);
 
-void outputMean(seq_array_t);
-void outputMean(fib_array_t);
+template< typename containerT >
+void outputMean(containerT items);
 
-void outputStandardDeviation(seq_array_t);
-void outputStandardDeviation(fib_array_t);
+template< typename containerT >
+void outputStandardDeviation(containerT items);
 
 int main(int argc, char* argv[])
 {
@@ -74,76 +74,43 @@ void fillFibonacciArray(fib_array_t& array_to_fill)
    }
 }
 
-double mean(fib_array_t fib_container)
+template< typename containerT >
+double mean(containerT items)
 {
    double sumOfElements = 0;
-   size_t container_size = fib_container.size();
+   size_t container_size = items.size();
    for (size_t i = 0; i < container_size; i++)
    {
-       sumOfElements += fib_container[i];
+       sumOfElements += items[i];
    }
    return sumOfElements / container_size;
 }
 
-double mean(seq_array_t seq_container)
-{
-   double sumOfElements = 0;
-   size_t container_size = seq_container.size();
-   for (size_t i = 0; i < container_size; i++)
-   {
-       sumOfElements += seq_container[i];
-   }
-   return sumOfElements / container_size;
-}
-
-double standardDeviation(seq_array_t seq_container)
+template< typename containerT >
+double standardDeviation(containerT items)
 {
    double tempSum = 0;
-   size_t container_size = seq_container.size();
-   double calculated_mean = mean(seq_container);
+   size_t container_size = items.size();
+   double calculated_mean = mean(items);
    for (size_t i = 0; i < container_size; i++)
    {
-       tempSum += pow((seq_container[i] - calculated_mean), 2);
+       tempSum += pow((items[i] - calculated_mean), 2);
    }
    return sqrt(tempSum / container_size);
 }
 
-double standardDeviation(fib_array_t fib_container)
-{
-   double tempSum = 0;
-   size_t container_size = fib_container.size();
-   double calculated_mean = mean(fib_container);
-   for (size_t i = 0; i < container_size; i++)
-   {
-       tempSum += pow((fib_container[i] - calculated_mean), 2);
-   }
-   return sqrt(tempSum / container_size);
-}
-
-void outputMean(seq_array_t array_to_display)
+template< typename containerT >
+void outputMean(containerT items)
 {
    std::cout << "\n";
-   std::cout << "The mean is: " << mean(array_to_display);
+   std::cout << "The mean is: " << mean(items);
    std::cout << std::endl;
 }
 
-void outputMean(fib_array_t array_to_display)
+template< typename containerT >
+void outputStandardDeviation(containerT items)
 {
    std::cout << "\n";
-   std::cout << "The mean is: " << mean(array_to_display);
-   std::cout << std::endl;
-}
-
-void outputStandardDeviation(seq_array_t array_to_display)
-{
-   std::cout << "\n";
-   std::cout << "The standard deviation is: " << standardDeviation(array_to_display);
-   std::cout << std::endl;
-}
-
-void outputStandardDeviation(fib_array_t array_to_display)
-{
-   std::cout << "\n";
-   std::cout << "The standard deviation is: " << standardDeviation(array_to_display);
+   std::cout << "The standard deviation is: " << standardDeviation(items);
    std::cout << std::endl;
 }
