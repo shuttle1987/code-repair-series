@@ -8,18 +8,39 @@ const size_t SIZE_OF_FIBONACCI_ARRAY = 20;
 typedef std::array<float, SIZE_OF_GENERIC_ARRAY> seq_array_t;
 typedef std::array<int, SIZE_OF_FIBONACCI_ARRAY> fib_array_t;
 
+/** Fills an array with sequential integers
+ * @param reference to the array that we are filling
+ */
 void fillSequentialIntegersArray(seq_array_t&);
+
+/** Fills an array with sequential fibonacci numbers
+ * @param reference to the array that we are filling
+ */
 void fillFibonacciArray(fib_array_t&);
 
+/** Calculate the mean for a collection of items
+ *@tparam the type of the collection
+ *@param the collection of items for which we are calculating the mean
+ */
 template< typename containerT >
 double mean(containerT const& items);
 
+/** Calculate the standard deviation for a collection of items
+ *@tparam the type of the collection
+ *@param the collection of items for which we are calculating the standard deviation
+ */
 template< typename containerT >
 double standardDeviation(containerT const& items);
 
+/** Calculates the mean of a container of items then outputs it to console
+ *@param the collection of items we are calculating then displaying the mean of
+ */
 template< typename containerT >
 void outputMean(containerT const& items);
 
+/** Calculates the standard deviation of a container of items then outputs it to console
+ *@param the collection of items we are calculating then displaying the standard deviation of
+ */
 template< typename containerT >
 void outputStandardDeviation(containerT const& items);
 
