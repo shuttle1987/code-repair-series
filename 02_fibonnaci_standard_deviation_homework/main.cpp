@@ -1,4 +1,5 @@
 #include <array>
+#include <cassert>
 #include <cmath>
 #include <iostream>
 
@@ -44,8 +45,34 @@ void outputMean(containerT const& items);
 template< typename containerT >
 void outputStandardDeviation(containerT const& items);
 
+/** Asserts that 2 floating point numbers are within epsilon of each other */
+template< typename T >
+void assert_floats_equality(T f1, T f2, T epsilon){
+   assert((f1 < f2 + epsilon) && (f1 > f2 - epsilon));
+}
+
+bool run_unit_tests(){
+   seq_array_t SequentialNumbers;
+   fib_array_t FibonacciNumbers;
+
+   fillSequentialIntegersArray(SequentialNumbers);
+   fillFibonacciArray(FibonacciNumbers);
+
+   double epsilon = 0.01;
+
+   assert_floats_equality(mean(SequentialNumbers), 50.5, epsilon);
+   assert_floats_equality(mean(FibonacciNumbers), 547.25, epsilon);
+
+   assert_floats_equality(standardDeviation(SequentialNumbers), 28.8661, epsilon);
+   assert_floats_equality(standardDeviation(FibonacciNumbers), 1055.81, epsilon);
+
+   return true;
+}
+
 int main(int argc, char* argv[])
 {
+   run_unit_tests();
+
    char sequenceType;
    seq_array_t SequentialNumbers;
    fib_array_t FibonacciNumbers;
