@@ -11,15 +11,17 @@ const size_t SIZE_OF_FIBONACCI_ARRAY = 20;
 typedef std::array<float, SIZE_OF_GENERIC_ARRAY> seq_array_t;
 typedef std::array<int, SIZE_OF_FIBONACCI_ARRAY> fib_array_t;
 
-/** Fills an array with sequential integers
- * @param reference to the array that we are filling
+/** Fills a container with sequential integers
+ * @param reference to the container that we are filling
  */
-void fillSequentialIntegersArray(seq_array_t&);
+template< typename containerT >
+void fillSequentialIntegers(containerT& items);
 
-/** Fills an array with sequential fibonacci numbers
- * @param reference to the array that we are filling
+/** Fills a container with sequential fibonacci numbers
+ * @param reference to the container that we are filling
  */
-void fillFibonacciArray(fib_array_t&);
+template< typename containerT >
+void fillFibonacci(containerT& items);
 
 /** Calculate the mean for a collection of items
  *@tparam the type of the collection
@@ -57,8 +59,8 @@ bool run_unit_tests(){
    seq_array_t SequentialNumbers;
    fib_array_t FibonacciNumbers;
 
-   fillSequentialIntegersArray(SequentialNumbers);
-   fillFibonacciArray(FibonacciNumbers);
+   fillSequentialIntegers(SequentialNumbers);
+   fillFibonacci(FibonacciNumbers);
 
    double epsilon = 0.01;
 
@@ -73,12 +75,8 @@ bool run_unit_tests(){
 
 int main(int argc, char* argv[])
 {
-   std::array<int*, 10> array_of_pointers;
-   outputMean(array_of_pointers);
-   outputStandardDeviation(array_of_pointers);
-
-   /*
    run_unit_tests();
+
    char sequenceType;
    seq_array_t SequentialNumbers;
    fib_array_t FibonacciNumbers;
@@ -91,13 +89,13 @@ int main(int argc, char* argv[])
 
    if (sequenceType == 'G' || sequenceType == 'g')
    {
-       fillSequentialIntegersArray(SequentialNumbers);
+       fillSequentialIntegers(SequentialNumbers);
        outputMean(SequentialNumbers);
        outputStandardDeviation(SequentialNumbers);
    }
    else if (sequenceType == 'F' || sequenceType == 'f')
    {
-       fillFibonacciArray(FibonacciNumbers);
+       fillFibonacci(FibonacciNumbers);
        outputMean(FibonacciNumbers);
        outputStandardDeviation(FibonacciNumbers);
    }
@@ -105,26 +103,34 @@ int main(int argc, char* argv[])
    {
        std::cout << "\n"
             << "Invalid input. Please type 'F' or 'G'. Thank you.";
-   }*/
+   }
    return 0;
 }
 
-void fillSequentialIntegersArray(seq_array_t& array_to_fill)
+template< typename containerT >
+void fillSequentialIntegers(containerT& container_to_fill)
 {
-   const size_t array_size = array_to_fill.size();
-   for (size_t i = 0; i < array_size; i++){
-       array_to_fill[i] = i + 1;
+   static_assert(std::is_arithmetic< typename containerT::value_type >::value,
+                 "This function only operates on containers with numeric types");
+
+   const size_t container_size = container_to_fill.size();
+   for (size_t i = 0; i < container_size; i++){
+       container_to_fill[i] = i + 1;
    }
 }
 
-void fillFibonacciArray(fib_array_t& array_to_fill)
+template< typename containerT >
+void fillFibonacci(containerT& container_to_fill)
 {
-   array_to_fill[0] = 0;
-   array_to_fill[1] = 1;
+   static_assert(std::is_arithmetic< typename containerT::value_type >::value,
+                 "This function only operates on containers with numeric types");
 
-   const size_t array_size = array_to_fill.size();
-   for (size_t i = 2; i < array_size; i++){
-       array_to_fill[i] = array_to_fill[i - 1] + array_to_fill[i - 2];
+   container_to_fill[0] = 0;
+   container_to_fill[1] = 1;
+
+   const size_t container_size = container_to_fill.size();
+   for (size_t i = 2; i < container_size; i++){
+       container_to_fill[i] = container_to_fill[i - 1] + container_to_fill[i - 2];
    }
 }
 
