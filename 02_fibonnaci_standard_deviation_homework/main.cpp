@@ -3,6 +3,7 @@
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <type_traits>
 
 const size_t SIZE_OF_GENERIC_ARRAY = 100;
 const size_t SIZE_OF_FIBONACCI_ARRAY = 20;
@@ -72,9 +73,9 @@ bool run_unit_tests(){
 
 int main(int argc, char* argv[])
 {
-   std::string string_of_numbers = "0123456789";
-   outputMean(string_of_numbers);
-   outputStandardDeviation(string_of_numbers);
+   std::array<int*, 10> array_of_pointers;
+   outputMean(array_of_pointers);
+   outputStandardDeviation(array_of_pointers);
 
    /*
    run_unit_tests();
@@ -130,6 +131,8 @@ void fillFibonacciArray(fib_array_t& array_to_fill)
 template< typename containerT >
 double mean(containerT const& items)
 {
+   static_assert(std::is_arithmetic< typename containerT::value_type >::value,
+                 "This function only operates on containers with numeric types");
    double sumOfElements = 0;
    const size_t container_size = items.size();
    for (size_t i = 0; i < container_size; i++)
@@ -142,6 +145,8 @@ double mean(containerT const& items)
 template< typename containerT >
 double standardDeviation(containerT const& items)
 {
+   static_assert(std::is_arithmetic< typename containerT::value_type >::value,
+                 "This function only operates on containers with numeric types");
    double tempSum = 0;
    const size_t container_size = items.size();
    const double calculated_mean = mean(items);
