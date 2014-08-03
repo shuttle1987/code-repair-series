@@ -2,6 +2,7 @@
 #include <cassert>
 #include <cmath>
 #include <iostream>
+#include <string>
 
 const size_t SIZE_OF_GENERIC_ARRAY = 100;
 const size_t SIZE_OF_FIBONACCI_ARRAY = 20;
@@ -71,12 +72,16 @@ bool run_unit_tests(){
 
 int main(int argc, char* argv[])
 {
-   run_unit_tests();
+   std::string string_of_numbers = "0123456789";
+   outputMean(string_of_numbers);
+   outputStandardDeviation(string_of_numbers);
 
+   /*
+   run_unit_tests();
    char sequenceType;
    seq_array_t SequentialNumbers;
    fib_array_t FibonacciNumbers;
-   std::cout << "Would you like to generate a generic sequence or a Fibonacci sequence?"
+	std::cout << "Would you like to generate a generic sequence or a Fibonacci sequence?"
        << std::endl
        << "\n"
        << "Type [G] + [ENTER] for a generic sequence, or;" << std::endl
@@ -99,7 +104,7 @@ int main(int argc, char* argv[])
    {
        std::cout << "\n"
             << "Invalid input. Please type 'F' or 'G'. Thank you.";
-   }
+   }*/
    return 0;
 }
 
